@@ -23,6 +23,13 @@ module "public_ip" {
 
 }
 
+module "network_security_groups" {
+  source     = "../../modules/azurerm_nsg"
+  nsgs       = var.nsgs
+  depends_on = [module.resource_group]
+
+}
+
 module "virtual_machines" {
   source     = "../../modules/azurerm_vm"
   vms        = var.vms
