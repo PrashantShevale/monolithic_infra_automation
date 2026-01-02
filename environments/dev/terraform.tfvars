@@ -101,6 +101,81 @@ pips = {
   }
 }
 
+nsgs = {
+  nsg1 = {
+    nsg_name                = "frontend-nsg-todoapp"
+    location            = "Central India"
+    resource_group_name = "rg-todoapp24"
+    tags = {
+      environment = "dev"
+    }
+
+    security_rules = [
+      {
+        name                       = "Allow-SSH"
+        priority                   = 1001
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "22"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+      }
+    ],
+    security_rules = [
+      {
+        name                       = "Allow-HTTP"
+        priority                   = 1002
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "80"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+      }
+    ]
+  }
+
+  nsg2 = {
+    nsg_name                = "backend-nsg-todoapp"
+    location            = "Central India"
+    resource_group_name = "rg-todoapp24"
+    tags = {
+      environment = "dev"
+    }
+
+    security_rules = [
+      {
+        name                       = "Allow-SSH"
+        priority                   = 1003
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "22"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+      }
+    ],
+    security_rules = [
+      {
+        name                       = "Allow-HTTP"
+        priority                   = 1004
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "80"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+      }
+    ]
+  }
+}
+
+
 vms = {
   vm1 = {
     name                            = "vm-todoapp-frontend"
