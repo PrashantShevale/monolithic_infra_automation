@@ -68,22 +68,33 @@ variable "nsgs" {
     tags                = map(string)
 
     security_rules = optional(list(object({
-      name                       = string
-      priority                   = number
-      direction                  = string
-      access                     = string
-      protocol                   = string
-      source_port_range           = optional(string)
-      destination_port_range      = optional(string)
-      source_address_prefix       = optional(string)
-      destination_address_prefix  = optional(string)
-      source_port_ranges          = optional(list(string))
-      destination_port_ranges     = optional(list(string))
-      source_address_prefixes     = optional(list(string))
+      name                         = string
+      priority                     = number
+      direction                    = string
+      access                       = string
+      protocol                     = string
+      source_port_range            = optional(string)
+      destination_port_range       = optional(string)
+      source_address_prefix        = optional(string)
+      destination_address_prefix   = optional(string)
+      source_port_ranges           = optional(list(string))
+      destination_port_ranges      = optional(list(string))
+      source_address_prefixes      = optional(list(string))
       destination_address_prefixes = optional(list(string))
     })), [])
   }))
 }
+
+variable "nic_nsg_associations" {
+  type = map(object({
+    nic_name            = string
+    nsg_name            = string
+    resource_group_name = string
+  }))
+
+}
+
+
 
 variable "pips" {
   type = map(object({
@@ -226,23 +237,6 @@ variable "sql_databases" {
     elastic_pool_id                                            = optional(string)
     auto_pause_delay_in_minutes                                = optional(number)
     tags                                                       = map(string)
-    # import = optional(list(object({
-    #   storage_uri                  = string
-    #   storage_key                  = string
-    #   storage_key_type             = string
-    #   administrator_login          = string
-    #   administrator_login_password = string
-    #   authentication_type          = string
-    #   storage_account_id           = string
-    # })))
-    # threat_detection_policy = optional(list(object({
-    #   state                      = string
-    #   disabled_alerts            = optional(list(string))
-    #   email_account_admins       = optional(bool)
-    #   email_addresses            = optional(list(string))
-    #   retention_days             = optional(number)
-    #   storage_account_access_key = optional(string)
-    #   storage_endpoint           = optional(string)
-    # })))
+
   }))
 }

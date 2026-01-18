@@ -30,6 +30,14 @@ module "network_security_groups" {
 
 }
 
+module "nic_nsg_associations" {
+  source               = "../../modules/azurerm_nic_nsg_association"
+  nic_nsg_associations = var.nic_nsg_associations
+  depends_on           = [module.network_interface_card, module.network_security_groups]
+}
+
+
+
 module "virtual_machines" {
   source     = "../../modules/azurerm_vm"
   vms        = var.vms
