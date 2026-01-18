@@ -103,7 +103,7 @@ pips = {
 
 nsgs = {
   nsg1 = {
-    nsg_name                = "frontend-nsg-todoapp"
+    nsg_name            = "frontend-nsg-todoapp"
     location            = "Central India"
     resource_group_name = "rg-todoapp24"
     tags = {
@@ -139,7 +139,7 @@ nsgs = {
   }
 
   nsg2 = {
-    nsg_name                = "backend-nsg-todoapp"
+    nsg_name            = "backend-nsg-todoapp"
     location            = "Central India"
     resource_group_name = "rg-todoapp24"
     tags = {
@@ -174,6 +174,21 @@ nsgs = {
     ]
   }
 }
+
+nic_nsg_associations = {
+  Association1 = {
+    nic_name            = "nic1-todoapp-frontend"
+    nsg_name            = "frontend-nsg-todoapp"
+    resource_group_name = "rg-todoapp24"
+
+  }
+  Association2 = {
+    nic_name            = "nic2-todoapp-backend"
+    nsg_name            = "backend-nsg-todoapp"
+    resource_group_name = "rg-todoapp24"
+  }
+}
+
 
 
 vms = {
